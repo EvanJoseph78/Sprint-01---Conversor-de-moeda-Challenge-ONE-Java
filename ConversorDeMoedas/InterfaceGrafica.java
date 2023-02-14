@@ -41,8 +41,29 @@ public class InterfaceGrafica {
     }
 
     public void caixaConversorMoedas(){
-        Object[] opcoes = { "Real para Dólar", "Dólar para Real" };
-        Object valor = JOptionPane.showInputDialog(null, "Escolha uma opção", "Conversor de Moedas", JOptionPane.INFORMATION_MESSAGE, null, opcoes, opcoes[0]);
+        Object[] opcoes = { 
+            "Real para Dólar",
+            "Real para Euro",    
+            "Real para Libras Esterlinas",
+            "Real para Peso Argentino",
+            "Real para Peso Chileno",
+            "Dólar para Real",
+            "Euro para Real",
+            "Libras esterlinas para Real",
+            "Peso Argentino para Real",
+            "Peso Chileno para Real" 
+        };
+
+        Object valor = JOptionPane.showInputDialog(
+            null, 
+            "Escolha uma opção", 
+            "Conversor de Moedas", 
+            JOptionPane.INFORMATION_MESSAGE, 
+            null, 
+            opcoes, 
+            opcoes[0]
+        );
+        
         if (valor != null) {
             System.out.println(valor.toString());
         }
@@ -50,7 +71,7 @@ public class InterfaceGrafica {
         Double valorMonetario = inputValorMoeda();
         System.out.println(valorMonetario);
         ConverterMoedas c = new ConverterMoedas(valor, valorMonetario);
-        JOptionPane.showMessageDialog(null, "O valor convertido é: " + c.converteMoeda());
+        JOptionPane.showMessageDialog(null, "O valor da conversão é: " + c.converteMoeda());
         System.out.println(c.converteMoeda());
     }
 
