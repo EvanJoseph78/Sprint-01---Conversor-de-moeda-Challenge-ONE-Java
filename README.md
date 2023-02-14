@@ -1,2 +1,4 @@
 # Sprint-01---Conversor-de-moeda-Challenge-ONE-Java
- Evandro José da Silva Mariano
+ Criação do projeto em Java de um conversor de moedas
+ e de um conversor de unidades
+ 
