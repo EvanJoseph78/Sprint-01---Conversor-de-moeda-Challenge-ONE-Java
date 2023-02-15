@@ -1,24 +1,14 @@
-import java.awt.Color;
-import javax.swing.ImageIcon;
-import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 public class InterfaceGrafica {
-    //criação da interface
 
-    public void criaInterfaceGrafica(){
-        JFrame janela = new JFrame();
-        janela.setTitle("Menu-Conversor");
-        janela.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); //fecha a janela
-        janela.setSize(400, 400); // dimensão da janela
-        janela.setVisible(true); //visibilidade da janela
-        janela.setResizable(false);
-
-        ImageIcon iconeLogo = new ImageIcon("conversorLogo.png");
-        janela.setIconImage(iconeLogo.getImage());
-
-        janela.getContentPane().setBackground(new Color(255,255,255));
-
+    public void iniciaApp(){
+        caixaDialogo();
+        int saida = JOptionPane.showConfirmDialog(null, "Deseja continuar?");
+        System.out.println(saida);
+        if (saida == 0) {
+            iniciaApp();
+        }
     }
 
     public void caixaDialogo(){
@@ -68,29 +58,34 @@ public class InterfaceGrafica {
             System.out.println(valor.toString());
         }
         
-        Double valorMonetario = inputValorMoeda();
+        Double valorMonetario = inputUsuario();
         System.out.println(valorMonetario);
         ConverterMoedas c = new ConverterMoedas(valor, valorMonetario);
         JOptionPane.showMessageDialog(null, "O valor da conversão é: " + c.converteMoeda());
         System.out.println(c.converteMoeda());
+        
     }
 
     public void caixaConversorUnidades(){
-        Object[] opcoes = { "metros", "kilómetros" };
+        Object[] opcoes = { "milimetros","decimetros","centimetros","metros","decametros","hectometros","kilómetros" };
         Object valor = JOptionPane.showInputDialog(null, "Escolha uma opção", "Conversor de Unidades", JOptionPane.INFORMATION_MESSAGE, null, opcoes, opcoes[0]);
         if (valor != null) {
             System.out.println(valor.toString());
         }
+
+        Double valorUnidade = inputUsuario();
+        ConversorUnidades c = new ConversorUnidades(valorUnidade, valor);
     }
 
-    public Double inputValorMoeda() {
+    public Double inputUsuario() {
         try {
             String valorMonetario = JOptionPane.showInputDialog(null, "Entre com o valor");    
             Double d = Double.parseDouble(valorMonetario);
             return d;
         } catch (Exception e) {
             System.out.println("Entrada inválida, entre com um valor numérico");
-            return inputValorMoeda();
+            JOptionPane.showMessageDialog(null, "Entrada inválida, entre com um valor numérico");
+            return inputUsuario();
         }
     }
 
